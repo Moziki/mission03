@@ -4,6 +4,9 @@ import edu.isu.cs.cs3308.structures.Stack;
 
 public class LinkedStack<E> implements Stack<E> {
 
+//Dan Walker
+//CS3308
+//Mission 03
     //The underlying data structure
     DoublyLinkedList<E> data;
 

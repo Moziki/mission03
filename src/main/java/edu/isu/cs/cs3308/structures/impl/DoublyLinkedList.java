@@ -4,6 +4,9 @@ import edu.isu.cs.cs3308.structures.List;
 
 public class DoublyLinkedList<E> implements List<E> {
 
+//Dan Walker
+//CS3308
+//Mission 03
     //DOUBLE LINK NODE CLASS
     private static class Node<E> {
         //@element the information or object in the node

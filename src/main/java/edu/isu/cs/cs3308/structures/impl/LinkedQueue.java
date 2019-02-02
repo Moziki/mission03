@@ -3,6 +3,9 @@ package edu.isu.cs.cs3308.structures.impl;
 import edu.isu.cs.cs3308.structures.Queue;
 import edu.isu.cs.cs3308.structures.Stack;
 
+//Dan Walker
+//CS3308
+//Mission 03
 public class LinkedQueue<E> implements Queue<E> {
 
     DoublyLinkedList<E> data;
@@ -33,26 +36,39 @@ public class LinkedQueue<E> implements Queue<E> {
         data.printList();
     }
 
+    /**
+     *
+     * @param into The new queue onto which the reversed order of contents from
+     * this queue are to be transferred to the top of, unless the provided queue
+     */
     public void transfer(Queue<E> into) {
         if (into == null){}
         else {
             LinkedStack<E> reverse = new LinkedStack<>();
+
+            //@param thisQueue & paramQueue: thess are used in the for loops, acting as indexes.
+            // Ensures accurate original size through the steps
             int thisQueue = this.size();
             int paramQueue = into.size();
             if (this.size() == 0) {
             } else {
+                //reverses order of called upon stack
                 for (int i = 0; i < thisQueue; i++) {
                     reverse.push(this.poll());
                 }
+                //stores param queue into called queue
                 if (paramQueue != 0) {
                     for (int i = 0; i < paramQueue; i++) {
                         this.offer(into.poll());
                     }
                 }
+                //@param stac : called here because the size is not known until first for loop
                 int stac = reverse.size();
+                //puts stack into param queue (called on stack in reverse)
                 for (int i = 0; i < stac; i++) {
                     into.offer(reverse.pop());
                 }
+                //puts original param queue back on the bottom of param queue
                 if (paramQueue != 0) {
                     for (int i = 0; i < thisQueue; i++) {
                         into.offer(this.poll());
@@ -61,7 +77,7 @@ public class LinkedQueue<E> implements Queue<E> {
             }
         }
     }
-
+    //Reverses queue by polling into stack and popping back out
     public void reverse() {
         LinkedStack<E> reverse = new LinkedStack<>();
         while (!(this.isEmpty())) {
@@ -72,15 +88,18 @@ public class LinkedQueue<E> implements Queue<E> {
         }
     }
 
+    /**
+     *
+     * @param from Queue whose contents are to be merged onto the bottom of
+     * this queue
+     */
     public void merge(Queue<E> from) {
         if (from == null) {}
         else {
             int index = from.size();
-            LinkedStack<E> temp = new LinkedStack<>();
             for (int i = 0; i < index; i++) {
-                temp.push(from.poll());
-                this.offer(temp.peek());
-                from.offer(temp.pop());
+                this.offer(from.peek());
+                from.offer(from.poll());
             }
         }
     }
